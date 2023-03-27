@@ -1,33 +1,35 @@
-# react-native-usb-printer
+# react-native-usb-printer-v2
 
-A React Native Library to support USB printer for Android platform 
+Is forked from `react-native-usb-printer` @ yogieeka@gmail.com
+
+A React Native Library to support USB printer for Android platform
 
 ## Installation
 
 ```
-npm install react-native-usb-printer --save
+npm install react-native-usb-printer-v2 --save
 ```
 
 ## Integrate module
 
-To integrate `react-native-usb-printer` with the rest of your react app just execute:
+To integrate `react-native-usb-printer-v2` with the rest of your react app just execute:
+
 ```
-react-native link react-native-usb-printer
+react-native link react-native-usb-printer-v2
 ```
 
 ## Usage
 
 ```javascript
-import { RNUSBPrinter } from 'react-native-usb-printer';
+import { RNUSBPrinter } from 'react-native-usb-printer-v2';
 
-RNUSBPrinter.printText('这是一个测试打印')
-RNUSBPrinter.printBillTextWithCut("<C>这是一段打印测试文字</C>")
-RNUSBPrinter.printBillTextWithCut("<M>这是一段打印测试文字</M>")
-RNUSBPrinter.printBillTextWithCut("<CM>这是一段打印测试文字</CM>")
+RNUSBPrinter.printText('这是一个测试打印');
+RNUSBPrinter.printBillTextWithCut('<C>这是一段打印测试文字</C>');
+RNUSBPrinter.printBillTextWithCut('<M>这是一段打印测试文字</M>');
+RNUSBPrinter.printBillTextWithCut('<CM>这是一段打印测试文字</CM>');
 
 //sample code for print image
-RNUSBPrinter.printPic(base64JpgLogo, { width: 200, left: 180});
-
+RNUSBPrinter.printPic(base64JpgLogo, { width: 200, left: 180 });
 ```
 
 ## Example
@@ -51,7 +53,7 @@ RNUSBPrinter.printPic(base64JpgLogo, { width: 200, left: 180});
     }else{
       console.log("没有找到打印设备")
     }
-    
+
   }
 
   printRawDataTest = () => {
