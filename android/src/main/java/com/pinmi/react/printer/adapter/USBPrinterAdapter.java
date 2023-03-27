@@ -22,7 +22,7 @@ import com.facebook.react.bridge.ReadableMap;
 import com.pinmi.react.printer.escpos.command.sdk.Command;
 import com.pinmi.react.printer.escpos.command.sdk.PrintPicture;
 import com.pinmi.react.printer.escpos.command.sdk.PrinterCommand;
-
+import android.os.Build;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
