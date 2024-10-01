@@ -1,6 +1,6 @@
 {
   "name": "react-native-usb-printer",
-  "version": "0.0.6",
+  "version": "0.1.101",
   "description": "a usb thermal printer library for android ",
   "main": "index.js",
   "scripts": {
