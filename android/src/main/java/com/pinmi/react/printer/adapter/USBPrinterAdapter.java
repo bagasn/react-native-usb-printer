@@ -89,16 +89,33 @@ public class USBPrinterAdapter {
     public void init(Context reactContext) {
         this.mContext = reactContext;
         this.mUSBManager = (UsbManager) this.mContext.getSystemService(Context.USB_SERVICE);
-        this.mPermissionIndent = PendingIntent.getBroadcast(
-            mContext, 
-            0, 
-            new Intent(ACTION_USB_PERMISSION), 
-            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) ? PendingIntent.FLAG_MUTABLE : 0
-        );
+        this.mPermissionIndent = getPendingIntent();
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
         filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        mContext.registerReceiver(mUsbDeviceReceiver, filter);
+        if (Build.VERSION.SDK_INT >= 33) {
+            mContext.registerReceiver(mUsbDeviceReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+        } else {
+            mContext.registerReceiver(mUsbDeviceReceiver, filter);
+        }
         Log.v(LOG_TAG, "RNUSBPrinter initialized");
+    }
+
+    PendingIntent getPendingIntent() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            return PendingIntent.getBroadcast(
+                    mContext,
+                    0,
+                    new Intent(ACTION_USB_PERMISSION),
+                    PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_NO_CREATE
+            );
+        }
+
+        return PendingIntent.getBroadcast(
+                mContext,
+                0,
+                new Intent(ACTION_USB_PERMISSION),
+                Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0
+        );
     }
 
     public void closeConnectionIfExists() {
